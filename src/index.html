@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script>
+            function getExcel(){
+
+                const response = await fetch('http://localhost:8081/export/v1/', {
+                        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                        //mode: 'cors', // no-cors, *cors, same-origin
+                       // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                      //  credentials: 'same-origin', // include, *same-origin, omit
+                        headers: {
+                        'Content-Type': 'application/json;charset=UTF-8'
+                        // 'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                      //  redirect: 'follow', // manual, *follow, error
+                     //   referrerPolicy: 'no-referrer', // no-referrer, *client
+                        body: JSON.stringify({
+   "name": "excelName.xlsx",
+   "lists":
+      [
+         {
+           "name":"Лист1",
+	        "params":[{
+	   	    "coord":"A1",
+		     "param":{
+			   "caption":"1111",
+			   "style":"cdcd",
+			   "mergeSell":"A2",
+			   "format":"number"
+		       }
+		   },
+           {
+	   	    "coord":"B1",
+		     "param":{
+			   "caption":"454545",
+			   "style":"cdcd",
+			   "mergeSell":"B2",
+			   "format":"number"
+		       }
+		   }]
+        }
+      ]
+}) // body data type must match "Content-Type" header
+                    });
+                   
+            }
+        </script>
+        <button onclick="getExcel()">Загрузить</button>
+    </body>
+</html>
